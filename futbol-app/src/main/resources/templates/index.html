@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>⚽ Bienvenida - Gestión de Fútbol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Paleta de Colores:
+           Principal: Azul Marino (#003366)
+           Acento: Amarillo Brillante (#FFD700)
+        */
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #F7F7F7; /* Fondo suave */
+            /* Usamos Flexbox para centrar perfectamente el contenido en la pantalla */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Evita barras de desplazamiento innecesarias */
+        }
+        .container {
+            text-align: center;
+            background-color: #FFFFFF;
+            padding: 50px 70px; /* Más padding para una sensación premium */
+            border-radius: 15px; /* Bordes más redondeados */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Sombra más profunda y profesional */
+            max-width: 500px;
+            width: 90%;
+            /* Animación ligera para destacar el contenedor */
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        h1 {
+            color: #003366; /* Color Principal */
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        p {
+            color: #666666;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        
+        /* Botón de Acento (Llamada a la acción) */
+        .btn {
+            background-color: #FFD700; /* Color de Acento (Amarillo Brillante) */
+            color: #1A1A1A; /* Texto oscuro para alto contraste */
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.3em;
+            font-weight: 700;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            display: inline-block; /* Para que apliquen padding y transform */
+            box-shadow: 0 5px 10px rgba(255, 215, 0, 0.4);
+        }
+        .btn:hover {
+            background-color: #E6C200; /* Tono ligeramente más oscuro */
+            transform: translateY(-3px); /* Efecto de elevación */
+            box-shadow: 0 8px 15px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestión de Fútbol ⚽</h1>
+        <p>Bienvenido al sistema administrativo centralizado para la gestión de clubes, entrenadores, jugadores y competiciones.</p>
+        <a href="/inicio" class="btn">Entrar al Sistema</a>
+    </div>
+</body>
+</html>

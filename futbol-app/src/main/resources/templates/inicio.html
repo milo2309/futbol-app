@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>⚽ Gestión de Fútbol | Inicio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Paleta de Colores (Consistencia):
+           Principal: Azul Marino (#003366)
+           Acento: Amarillo Brillante (#FFD700)
+           Gris Suave para filas alternas: #F2F4F7
+        */
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #F7F7F7;
+            margin: 0;
+            padding: 0; /* Eliminamos el padding del body para controlar el centrado */
+            color: #333333;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL: CLAVE PARA EL CENTRADO PROFESIONAL --- */
+        .main-content {
+            max-width: 1300px; /* Ancho máximo para evitar que se extienda demasiado */
+            margin: 0 auto;    /* CENTRA el contenedor horizontalmente */
+            padding: 20px 40px; /* Añade espacio a los lados del contenido */
+        }
+
+        /* Estilo general para los títulos de sección */
+        h1 {
+            color: #003366;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #FFD700; /* Detalle de acento */
+            font-size: 1.8em;
+        }
+
+        h2 { /* Estilo para títulos de formularios y tablas */
+            color: #003366;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        /* --- Estilo de Formularios (Coherencia con las vistas de edición) --- */
+
+        form {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 15px; 
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+            padding: 10px 15px;
+            border: 1px solid #CCCCCC;
+            border-radius: 6px;
+            font-size: 14px;
+            flex-grow: 1; 
+            box-sizing: border-box;
+            min-width: 180px; 
+        }
+
+        select {
+            /* Personalización del select (mismo estilo que antes) */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: #FFFFFF;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="%23003366"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 1.5em;
+        }
+
+        /* Botones de Guardar (Color de Acento) */
+        button[type="submit"] {
+            background-color: #FFD700;
+            color: #1A1A1A;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            flex-grow: 0; /* No debe crecer, solo tomar el espacio necesario */
+            flex-shrink: 0;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #E6C200;
+            transform: translateY(-1px);
+        }
+
+        /* --- Estilo de Tablas (Para Listados) --- */
+
+        table {
+            border-collapse: separate; 
+            border-spacing: 0;
+            width: 100%;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+            border-radius: 8px;
+            overflow: hidden; 
+            background-color: #FFFFFF;
+        }
+
+        /* Encabezados de la tabla */
+        th {
+            background-color: #003366; 
+            color: #FFFFFF;
+            font-weight: 700;
+            padding: 12px 15px;
+            text-align: left;
+            letter-spacing: 0.5px;
+            border: none;
+        }
+
+        /* Filas y Celdas */
+        td {
+            border-bottom: 1px solid #EEEEEE; 
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        /* Filas Alternas (Striped rows) para mejor legibilidad */
+        tbody tr:nth-child(even) {
+            background-color: #F2F4F7;
+        }
+
+        tbody tr:hover {
+            background-color: #E8EBF0;
+            transition: background-color 0.3s;
+        }
+
+        /* Columna de Acciones (Enlaces) */
+        td a {
+            color: #003366;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        td a:hover {
+            color: #FFD700; 
+            text-decoration: underline;
+        }
+        
+        td:last-child {
+            white-space: nowrap;
+        }
+        
+        /* Ajuste para el separador visual */
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #CCCCCC, rgba(0, 0, 0, 0));
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="main-content">
+        
+        <h1>Gestión de Datos Principales</h1>
+
+        <div class="forms-container">
+            <p style="font-size: 1.2em; color: #003366; margin-bottom: 25px; font-weight: 600;">Utilice los siguientes formularios para crear nuevos registros:</p>
+
+            <h2>Nuevo Club</h2>
+            <form th:action="@{/guardarClub}" th:object="${nuevoClub}" method="post">
+                <input type="text" th:field="*{nombre}" placeholder="Nombre del Club" required>
+                <select th:field="*{entrenador.id}" required>
+                    <option value="">Selecciona un Entrenador</option>
+                    <option th:each="entrenador : ${entrenadores}" th:value="${entrenador.id}" th:text="${entrenador.nombre + ' ' + entrenador.apellido}"></option>
+                </select>
+                <button type="submit">Guardar Club</button>
+            </form>
+
+            <h2>Nuevo Entrenador</h2>
+            <form th:action="@{/guardarEntrenador}" th:object="${nuevoEntrenador}" method="post">
+                <input type="text" th:field="*{nombre}" placeholder="Nombre" required>
+                <input type="text" th:field="*{apellido}" placeholder="Apellido" required>
+                <input type="number" th:field="*{edad}" placeholder="Edad" required>
+                <input type="text" th:field="*{nacionalidad}" placeholder="Nacionalidad" required>
+                <button type="submit">Guardar Entrenador</button>
+            </form>
+
+            <h2>Nueva Asociación</h2>
+            <form th:action="@{/guardarAsociacion}" th:object="${nuevaAsociacion}" method="post">
+                <input type="text" th:field="*{nombre}" placeholder="Nombre" required>
+                <input type="text" th:field="*{pais}" placeholder="País" required>
+                <input type="text" th:field="*{presidente}" placeholder="Presidente" required>
+                <button type="submit">Guardar Asociación</button>
+            </form>
+
+            <h2>Nueva Competición</h2>
+            <form th:action="@{/guardarCompeticion}" th:object="${nuevaCompeticion}" method="post">
+                <input type="text" th:field="*{nombre}" placeholder="Nombre de Competición" required>
+                <input type="number" th:field="*{montoPremio}" placeholder="Monto Premio ($)" required>
+                <input type="date" th:field="*{fechaInicio}" required>
+                <input type="date" th:field="*{fechaFin}" required>
+                <button type="submit">Guardar Competición</button>
+            </form>
+
+            <h2>Nuevo Jugador</h2>
+            <form th:action="@{/guardarJugador}" th:object="${nuevoJugador}" method="post">
+                <input type="text" th:field="*{nombre}" placeholder="Nombre" required>
+                <input type="text" th:field="*{apellido}" placeholder="Apellido" required>
+                <input type="number" th:field="*{numero}" placeholder="Número de Camiseta" required>
+                <input type="text" th:field="*{posicion}" placeholder="Posición" required>
+                <select th:field="*{club.id}" required>
+                    <option value="">Selecciona un Club</option>
+                    <option th:each="club : ${clubes}" th:value="${club.id}" th:text="${club.nombre}"></option>
+                </select>
+                <button type="submit">Guardar Jugador</button>
+            </form>
+        </div>
+
+        <hr> 
+        
+        <h1>Listados y Gestión de Datos</h1>
+
+        <h2>Clubes de Fútbol</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre del Club</th>
+                    <th>Entrenador</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="club : ${clubes}">
+                    <td th:text="${club.id}">ID</td>
+                    <td th:text="${club.nombre}">Nombre del Club</td>
+                    <td th:text="${club.entrenador.nombre + ' ' + club.entrenador.apellido}">Nombre Entrenador</td>
+                    <td>
+                        <a th:href="@{/editarClub/{id}(id=${club.id})}">Editar</a> |
+                        <a th:href="@{/eliminarClub/{id}(id=${club.id})}" onclick="return confirm('¿Estás seguro de eliminar este club?')">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Entrenadores</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Nacionalidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="entrenador : ${entrenadores}">
+                    <td th:text="${entrenador.id}">ID</td>
+                    <td th:text="${entrenador.nombre}">Nombre</td>
+                    <td th:text="${entrenador.apellido}">Apellido</td>
+                    <td th:text="${entrenador.edad}">Edad</td>
+                    <td th:text="${entrenador.nacionalidad}">Nacionalidad</td>
+                    <td>
+                        <a th:href="@{/editarEntrenador/{id}(id=${entrenador.id})}">Editar</a> |
+                        <a th:href="@{/eliminarEntrenador/{id}(id=${entrenador.id})}" onclick="return confirm('¿Estás seguro de eliminar este entrenador?')">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Asociaciones</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>País</th>
+                    <th>Presidente</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="asociacion : ${asociaciones}">
+                    <td th:text="${asociacion.id}">ID</td>
+                    <td th:text="${asociacion.nombre}">Nombre</td>
+                    <td th:text="${asociacion.pais}">País</td>
+                    <td th:text="${asociacion.presidente}">Presidente</td>
+                    <td>
+                        <a th:href="@{/editarAsociacion/{id}(id=${asociacion.id})}">Editar</a> |
+                        <a th:href="@{/eliminarAsociacion/{id}(id=${asociacion.id})}" onclick="return confirm('¿Estás seguro de eliminar esta asociación?')">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Competiciones</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Monto Premio</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="competicion : ${competiciones}">
+                    <td th:text="${competicion.id}">ID</td>
+                    <td th:text="${competicion.nombre}">Nombre</td>
+                    <td th:text="${competicion.montoPremio}">Monto Premio</td>
+                    <td th:text="${competicion.fechaInicio}">Fecha Inicio</td>
+                    <td th:text="${competicion.fechaFin}">Fecha Fin</td>
+                    <td>
+                        <a th:href="@{/editarCompeticion/{id}(id=${competicion.id})}">Editar</a> |
+                        <a th:href="@{/eliminarCompeticion/{id}(id=${competicion.id})}" onclick="return confirm('¿Estás seguro de eliminar esta competición?')">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Jugadores</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Número</th>
+                    <th>Posición</th>
+                    <th>Club</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="jugador : ${jugadores}">
+                    <td th:text="${jugador.id}">ID</td>
+                    <td th:text="${jugador.nombre}">Nombre</td>
+                    <td th:text="${jugador.apellido}">Apellido</td>
+                    <td th:text="${jugador.numero}">Número</td>
+                    <td th:text="${jugador.posicion}">Posición</td>
+                    <td th:text="${jugador.club.nombre}">Nombre Club</td>
+                    <td>
+                        <a th:href="@{/editarJugador/{id}(id=${jugador.id})}">Editar</a> |
+                        <a th:href="@{/eliminarJugador/{id}(id=${jugador.id})}" onclick="return confirm('¿Estás seguro de eliminar este jugador?')">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div> </body>
+</html>

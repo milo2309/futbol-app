@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>⚽ Editar Club</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Paleta de Colores (Misma que la anterior para coherencia):
+           Principal: Azul Marino (#003366)
+           Acento: Amarillo Brillante (#FFD700)
+           Fondo: Blanco Grisáceo (#F7F7F7)
+           Texto: Gris Oscuro (#333333)
+        */
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #F7F7F7;
+            margin: 0;
+            padding: 40px;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal del formulario */
+        .container {
+            background-color: #FFFFFF;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #003366; /* Color Principal */
+            font-weight: 700;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Espacio entre campos */
+        }
+
+        /* Estilo unificado para campos de entrada y select */
+        input[type="text"],
+        select {
+            padding: 12px 15px;
+            border: 1px solid #CCCCCC;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+            /* Estilo específico para el select */
+            -webkit-appearance: none; /* Elimina estilo por defecto en navegadores webkit */
+            -moz-appearance: none;    /* Elimina estilo por defecto en Firefox */
+            appearance: none;
+            background-color: #FFFFFF;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="%23003366"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 1.5em;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #003366;
+            box-shadow: 0 0 8px rgba(0, 51, 102, 0.2);
+            outline: none;
+        }
+
+        /* Estilo para el botón de guardar */
+        button[type="submit"] {
+            background-color: #FFD700;
+            color: #1A1A1A;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(255, 215, 0, 0.3);
+        }
+
+        button[type="submit"]:hover {
+            background-color: #E6C200;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Estilo para el enlace de volver */
+        a {
+            display: inline-block;
+            margin-top: 25px;
+            color: #003366;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 15px;
+            border: 1px solid #003366;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #003366;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Club</h1>
+        <form th:action="@{/editarClub}" th:object="${club}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <input type="text" th:field="*{nombre}" placeholder="Nombre del Club" required>
+
+            <select th:field="*{entrenador.id}" required>
+                <option value="">Selecciona un Entrenador</option>
+                <option th:each="entrenador : ${entrenadores}"
+                        th:value="${entrenador.id}"
+                        th:text="${entrenador.nombre + ' ' + entrenador.apellido}"
+                        th:selected="${club.entrenador != null and entrenador.id == club.entrenador.id}">
+                </option>
+            </select>
+
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </div>
+    <a href="/inicio">Volver al Inicio</a>
+</body>
+</html>

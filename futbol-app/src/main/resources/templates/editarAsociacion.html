@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>⚽ Editar Asociación</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Paleta de Colores:
+           Principal: Azul Marino (#003366)
+           Acento: Amarillo Brillante (#FFD700)
+           Fondo: Blanco Grisáceo (#F7F7F7)
+           Texto: Gris Oscuro (#333333)
+        */
+
+        body {
+            font-family: 'Montserrat', sans-serif; /* Fuente moderna */
+            background-color: #F7F7F7; /* Fondo suave */
+            margin: 0;
+            padding: 40px;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra el contenido */
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal del formulario */
+        .container {
+            background-color: #FFFFFF;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Sombra elegante */
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #003366; /* Color Principal */
+            font-weight: 700;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #FFD700; /* Detalle de acento */
+            padding-bottom: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Espacio entre campos */
+        }
+
+        /* Estilo para los campos de entrada */
+        input[type="text"] {
+            padding: 12px 15px;
+            border: 1px solid #CCCCCC;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+            box-sizing: border-box; /* Incluye padding y border en el ancho */
+        }
+
+        input[type="text"]:focus {
+            border-color: #003366;
+            box-shadow: 0 0 8px rgba(0, 51, 102, 0.2); /* Sombra al enfocar */
+            outline: none;
+        }
+
+        /* Estilo para el botón de guardar */
+        button[type="submit"] {
+            background-color: #FFD700; /* Color de Acento */
+            color: #1A1A1A;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(255, 215, 0, 0.3);
+        }
+
+        button[type="submit"]:hover {
+            background-color: #E6C200; /* Tono ligeramente más oscuro al pasar el ratón */
+            transform: translateY(-2px); /* Efecto de "levantamiento" */
+            box-shadow: 0 6px 10px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Estilo para el enlace de volver */
+        a {
+            display: inline-block;
+            margin-top: 25px;
+            color: #003366;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 15px;
+            border: 1px solid #003366;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #003366;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Asociación</h1>
+        <form th:action="@{/editarAsociacion}" th:object="${asociacion}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <input type="text" th:field="*{nombre}" placeholder="Nombre de la Asociación" required>
+            <input type="text" th:field="*{pais}" placeholder="País" required>
+            <input type="text" th:field="*{presidente}" placeholder="Nombre del Presidente" required>
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </div>
+    <a href="/">Volver al Inicio</a>
+</body>
+</html>
